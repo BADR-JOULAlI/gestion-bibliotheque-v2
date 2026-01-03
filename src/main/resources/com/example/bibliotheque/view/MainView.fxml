@@ -25,7 +25,15 @@
 
                 <Tab text="Gestion des Membres">
                     <content>
-                        <StackPane><Label text="Module Membres - Bientôt disponible" /></StackPane>
+                        <fx:include source="MembreView.fxml" />
+                    </content>
+                </Tab>
+
+                <Tab text="Gestion des Emprunts">
+                    <content>
+                        <StackPane>
+                            <Label text="Module Emprunts - Prochaine étape" style="-fx-font-size: 14px;" />
+                        </StackPane>
                     </content>
                 </Tab>
             </tabs>
