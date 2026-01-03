@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.bibliotheque.controller.LivreController">
+    <top>
+        <Label text="Gestion du Catalogue des Livres" style="-fx-font-size: 20px; -fx-font-weight: bold;" BorderPane.alignment="CENTER">
+            <padding><Insets top="10" bottom="10"/></padding>
+        </Label>
+    </top>
+
+    <center>
+        <TableView fx:id="tableLivres">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="50" />
+                <TableColumn fx:id="colTitre" text="Titre" prefWidth="150" />
+                <TableColumn fx:id="colAuteur" text="Auteur" prefWidth="120" />
+                <TableColumn fx:id="colIsbn" text="ISBN" prefWidth="100" />
+                <TableColumn fx:id="colAnnee" text="Année" prefWidth="80" />
+                <TableColumn fx:id="colDisponible" text="Dispo" prefWidth="70" />
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <VBox spacing="10">
+            <padding><Insets top="10" bottom="10" left="10" right="10"/></padding>
+            <GridPane hgap="10" vgap="10">
+                <Label text="Titre:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <TextField fx:id="txtTitre" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                <Label text="Auteur:" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                <TextField fx:id="txtAuteur" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+                <Label text="ISBN:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="txtIsbn" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label text="Année:" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                <TextField fx:id="txtAnnee" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+                <CheckBox fx:id="chkDisponible" text="Disponible" selected="true" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            </GridPane>
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button text="Ajouter le Livre" onAction="#handleAjouter" style="-fx-background-color: #2ecc71; -fx-text-fill: white;"/>
+                <Button text="Supprimer Sélection" onAction="#handleSupprimer" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>
