@@ -1,6 +1,7 @@
 package com.example.bibliotheque.exception;
 
-public class DaoException extends Exception {
+// On change "Exception" par "RuntimeException"
+public class DaoException extends RuntimeException {
 
     public DaoException(String message) {
         super(message);

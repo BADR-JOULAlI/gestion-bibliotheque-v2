@@ -9,16 +9,15 @@ public class DatabaseConnection {
     private static volatile DatabaseConnection instance;
     private Connection connection;
 
-    private static final String URL =
-            "jdbc:mysql://localhost:3306/bibliotheque?useSSL=false&serverTimezone=UTC";
+    // Configuration issue de ta capture
+    private static final String URL = "jdbc:mysql://localhost:3306/bibliotheque";
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
-    private DatabaseConnection() throws SQLException {
-        this.connection = DriverManager.getConnection(URL, USER, PASSWORD);
-    }
+    // Constructeur privé
+    private DatabaseConnection() {}
 
-    public static DatabaseConnection getInstance() throws SQLException {
+    public static DatabaseConnection getInstance() {
         if (instance == null) {
             synchronized (DatabaseConnection.class) {
                 if (instance == null) {
@@ -29,7 +28,20 @@ public class DatabaseConnection {
         return instance;
     }
 
+    /**
+     * LE CORRECTIF : Vérifie et rouvre la connexion si elle est fermée
+     */
     public Connection getConnection() {
+        try {
+            // Si la connexion est nulle ou si elle a été fermée par un autre module
+            if (connection == null || connection.isClosed()) {
+                System.out.println("⚠️ Connexion fermée détectée -> Réouverture en cours...");
+                connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur de reconnexion MySQL : " + e.getMessage());
+            e.printStackTrace();
+        }
         return connection;
     }
 }
