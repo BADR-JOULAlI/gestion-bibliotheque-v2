@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="650.0" prefWidth="950.0" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.bibliotheque.controller.MainController">
+    <children>
+        <MenuBar>
+            <menus>
+                <Menu text="Fichier">
+                    <items>
+                        <MenuItem text="Quitter" onAction="#handleQuitter"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+
+        <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+            <tabs>
+                <Tab text="Catalogue des Livres">
+                    <content>
+                        <fx:include source="LivreView.fxml" />
+                    </content>
+                </Tab>
+
+                <Tab text="Gestion des Membres">
+                    <content>
+                        <StackPane><Label text="Module Membres - Bientôt disponible" /></StackPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</VBox>

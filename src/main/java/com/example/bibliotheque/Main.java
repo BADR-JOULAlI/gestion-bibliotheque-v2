@@ -1,27 +1,22 @@
-package com.example.bibliotheque;
+package com.example.bibliotheque.util;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
     @Override
-    public void start(Stage stage) {
-        Label label = new Label(" Gestion de Bibliothèque - JavaFX OK !");
-        StackPane root = new StackPane(label);
-
-        Scene scene = new Scene(root, 400, 200);
-
-        stage.setTitle("Gestion Bibliothèque");
+    public void start(Stage stage) throws Exception {
+        // Attention au chemin : il commence par / car c'est une ressource
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/bibliotheque/view/MainView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Système de Gestion de Bibliothèque");
         stage.setScene(scene);
         stage.show();
     }
 
     public static void main(String[] args) {
-        launch(args);
+        launch();
     }
 }
-
