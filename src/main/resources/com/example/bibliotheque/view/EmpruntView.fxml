@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.example.bibliotheque.controller.EmpruntController"
+           stylesheets="@../css/style.css"
+           styleClass="main-content">
+
+    <VBox spacing="30" alignment="TOP_CENTER" maxWidth="1000">
+
+        <VBox alignment="CENTER" spacing="5">
+            <Label text="Système de Prêts" styleClass="header-title"/>
+            <Label text="Gérez les emprunts de livres en temps réel" style="-fx-text-fill: #858796;"/>
+        </VBox>
+
+        <HBox spacing="30" alignment="CENTER" VBox.vgrow="ALWAYS">
+
+            <VBox styleClass="card" spacing="20" minWidth="400" alignment="CENTER_LEFT">
+                <Label text="Nouvel Enregistrement" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+                <Separator/>
+
+                <VBox spacing="10">
+                    <Label text="Sélectionner le Livre" style="-fx-font-weight: bold;"/>
+                    <ComboBox fx:id="comboLivres" promptText="Rechercher un livre..." maxWidth="Infinity"/>
+                </VBox>
+
+                <VBox spacing="10">
+                    <Label text="Sélectionner le Membre" style="-fx-font-weight: bold;"/>
+                    <ComboBox fx:id="comboMembres" promptText="Rechercher un membre..." maxWidth="Infinity"/>
+                </VBox>
+
+                <VBox spacing="10">
+                    <Label text="Date de Retour Prévue" style="-fx-font-weight: bold;"/>
+                    <DatePicker fx:id="dateRetourPrevue" maxWidth="Infinity"/>
+                </VBox>
+
+                <Region VBox.vgrow="ALWAYS" /> <Button text="ENREGISTRER LE PRÊT" onAction="#handleEnregistrer"
+                                                       styleClass="btn-save" maxWidth="Infinity"/>
+            </VBox>
+
+            <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="15">
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="Prêts en cours" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button text="Actualiser" onAction="#initialize" style="-fx-background-color: transparent; -fx-text-fill: -fx-primary;"/>
+                </HBox>
+
+                <TableView fx:id="tableEmprunts" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colLivre" text="Livre" prefWidth="180"/>
+                        <TableColumn fx:id="colMembre" text="Membre" prefWidth="180"/>
+                        <TableColumn fx:id="colDateEmprunt" text="Date Sortie" prefWidth="120"/>
+                        <TableColumn fx:id="colDateRetour" text="Echéance" prefWidth="120"/>
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
+                </TableView>
+
+                <HBox spacing="10" alignment="CENTER_RIGHT">
+                    <Button text="Marquer comme retourné" onAction="#handleRetour"
+                            style="-fx-background-color: #36b9cc; -fx-text-fill: white; -fx-background-radius: 5;"/>
+                </HBox>
+            </VBox>
+        </HBox>
+    </VBox>
+</StackPane>

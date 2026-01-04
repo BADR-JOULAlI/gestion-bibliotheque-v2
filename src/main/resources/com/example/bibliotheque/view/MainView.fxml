@@ -1,42 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
 
-<VBox prefHeight="650.0" prefWidth="950.0" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.bibliotheque.controller.MainController">
-    <children>
-        <MenuBar>
-            <menus>
-                <Menu text="Fichier">
-                    <items>
-                        <MenuItem text="Quitter" onAction="#handleQuitter"/>
-                    </items>
-                </Menu>
-            </menus>
-        </MenuBar>
+<BorderPane prefHeight="750.0" prefWidth="1100.0"
+            stylesheets="/css/style.css"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.bibliotheque.controller.MainController">
 
-        <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
-            <tabs>
-                <Tab text="Catalogue des Livres">
-                    <content>
-                        <fx:include source="LivreView.fxml" />
-                    </content>
-                </Tab>
+    <left>
+        <VBox prefWidth="240" spacing="15" styleClass="sidebar">
+            <padding>
+                <Insets top="30" right="15" bottom="30" left="15"/>
+            </padding>
 
-                <Tab text="Gestion des Membres">
-                    <content>
-                        <fx:include source="MembreView.fxml" />
-                    </content>
-                </Tab>
+            <Label text="BIBLIO-ESI" styleClass="sidebar-brand"/>
+            <Separator style="-fx-opacity: 0.2;"/>
 
-                <Tab text="Gestion des Emprunts">
-                    <content>
-                        <StackPane>
-                            <Label text="Module Emprunts - Prochaine étape" style="-fx-font-size: 14px;" />
-                        </StackPane>
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
-    </children>
-</VBox>
+            <VBox spacing="8" VBox.vgrow="ALWAYS">
+                <Button text="📚  Livres" maxWidth="Infinity" styleClass="nav-button" onAction="#showLivres"/>
+                <Button text="👤  Membres" maxWidth="Infinity" styleClass="nav-button" onAction="#showMembres"/>
+                <Button text="🔄  Emprunts" maxWidth="Infinity" styleClass="nav-button" onAction="#showEmprunts"/>
+            </VBox>
+
+            <Separator style="-fx-opacity: 0.2;"/>
+            <Button text="🚪  Quitter" maxWidth="Infinity" styleClass="nav-button-exit" onAction="#handleQuitter"/>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="60" styleClass="top-bar">
+                <padding>
+                    <Insets left="20" right="20"/>
+                </padding>
+                <Label fx:id="lblCurrentView" text="Gestion des Emprunts" styleClass="top-bar-title"/>
+            </HBox>
+
+            <StackPane fx:id="contentArea" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+                <fx:include source="EmpruntView.fxml" />
+            </StackPane>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" styleClass="status-bar">
+            <padding>
+                <Insets top="5" right="15" bottom="5" left="15"/>
+            </padding>
+            <Label text="Système de Gestion v1.0 | Statut : Connecté à MySQL" styleClass="status-label"/>
+        </HBox>
+    </bottom>
+</BorderPane>
